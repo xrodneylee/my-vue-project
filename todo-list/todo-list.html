@@ -13,7 +13,9 @@
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a v-bind:class="[navLinkClass, {active: showTodo}]" href="#" @click="test1()">TODO</a>
+                        <a v-bind:class="[navLinkClass, {active: showTodo}]" href="#" @click="test1()">
+                            TODO <span class="badge badge-default badge-pill">14</span>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a v-bind:class="[navLinkClass, {active: showDoing}] " href="#" @click="test2()">DOING</a>
@@ -23,21 +25,22 @@
                     </li>
                 </ul>
             </div>
-            <template v-if="showTodo">
-                <div class="card-block">
-                    <a href="#" class="btn btn-success">add</a>
-                </div> 
-            </template>
-            <template v-if="showDoing">
-                <div class="card-block">
-                    list
-                </div> 
-            </template>
-            <template v-if="showDone">
-                <div class="card-block">
-                    list
-                </div> 
-            </template>
+            <div class="card-block" v-if="showTodo">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="todo...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button" @click="test4()">add</button>
+                        </span>
+                    </div>
+                </div>
+            </div>  
+            <div class="card-block" v-if="showDoing">
+                list
+            </div> 
+            <div class="card-block" v-if="showDone">
+                list
+            </div>          
         </div>
         <footer>
             <small class="text-muted">

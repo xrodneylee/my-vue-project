@@ -24,6 +24,9 @@ var app = new Vue({
             this.showTodo= false;
             this.showDoing= false;
             this.showDone= true;
+        },
+        test4: function () {
+            alert(1)
         }
     }
 });
