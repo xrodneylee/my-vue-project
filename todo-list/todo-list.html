@@ -11,21 +11,33 @@
         <h1>{{title}}</h1>
         <div class="card">
             <div class="card-header">
-                <ul class="nav nav-pills card-header-pills">
+                <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">TODO</a>
+                        <a v-bind:class="[navLinkClass, {active: showTodo}]" href="#" @click="test1()">TODO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">DOING</a>
+                        <a v-bind:class="[navLinkClass, {active: showDoing}] " href="#" @click="test2()">DOING</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">DONE</a>
+                        <a v-bind:class="[navLinkClass, {active: showDone}] " href="#" @click="test3()">DONE</a>
                     </li>
                 </ul>
             </div>
-            <div class="card-block">
-                <a href="#" class="btn btn-success">add</a>
-            </div> 
+            <template v-if="showTodo">
+                <div class="card-block">
+                    <a href="#" class="btn btn-success">add</a>
+                </div> 
+            </template>
+            <template v-if="showDoing">
+                <div class="card-block">
+                    list
+                </div> 
+            </template>
+            <template v-if="showDone">
+                <div class="card-block">
+                    list
+                </div> 
+            </template>
         </div>
         <footer>
             <small class="text-muted">
