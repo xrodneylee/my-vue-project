@@ -13,38 +13,95 @@
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a v-bind:class="[navLinkClass, {active: showTodo}]" href="#" @click="test1()">
-                            TODO <span class="badge badge-default badge-pill">14</span>
+                        <a :class="[navLinkClass, {active: showTodo}]" href="#" @click="test1()">
+                            TODO <span class="badge badge-default badge-pill">{{numOfTodo}}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a v-bind:class="[navLinkClass, {active: showDoing}] " href="#" @click="test2()">DOING</a>
+                        <a :class="[navLinkClass, {active: showDoing}] " href="#" @click="test2()">
+                            DOING <span class="badge badge-default badge-pill">{{numOfDoing}}</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a v-bind:class="[navLinkClass, {active: showDone}] " href="#" @click="test3()">DONE</a>
+                        <a :class="[navLinkClass, {active: showDone}] " href="#" @click="test3()">
+                            DONE <span class="badge badge-default badge-pill">{{numOfDone}}</span>
+                        </a>
                     </li>
                 </ul>
             </div>
             <div class="card-block" v-if="showTodo">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="todo...">
+                        <input type="text" class="form-control" placeholder="input the task ..." v-model="newTodo">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button" @click="test4()">add</button>
+                            <button class="btn btn-warning" type="button" @click="addTask()">add</button>
                         </span>
                     </div>
+                    </br>
+                    <table class="table table-sm table-hover">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>#</th>
+                                <th>task</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(todo, index) in todos">
+                                <td>{{index + 1}}</td>
+                                <td>{{todo}}</td>
+                                <td>
+                                    <button class="btn btn-primary" type="button" @click="moveDoing(todo, index)">DOING</button>
+                                    <button class="btn btn-danger" type="button" @click="deleteTodoTask(index)">DELETE</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>  
             <div class="card-block" v-if="showDoing">
-                list
+                <div class="col-lg-6">
+                    <table class="table table-sm table-hover">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>#</th>
+                                <th>task</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(doing, index) in doings">
+                                <td>{{index + 1}}</td>
+                                <td>{{doing}}</td>
+                                <td>
+                                    <button class="btn btn-success" type="button" @click="moveDone(doing, index)">DONE</button>
+                                    <button class="btn btn-danger" type="button" @click="deleteDoingTask(index)">DELETE</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div> 
             <div class="card-block" v-if="showDone">
-                list
+                <div class="col-lg-6">
+                    <table class="table table-sm table-hover">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>#</th>
+                                <th>task</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(done, index) in dones">
+                                <td>{{index + 1}}</td>
+                                <td>{{done}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>          
         </div>
         <footer>
             <small class="text-muted">
-                © 2017 guanpu
+                © 2017 guanpu.lee
             </small>
         </footer>
     </div>
